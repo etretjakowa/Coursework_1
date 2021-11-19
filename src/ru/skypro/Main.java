@@ -30,19 +30,18 @@ public class Main {
         employees[9] = employee9;
 
 
-
         sumWages();
         maxWages();
         minWages();
         averageWages();
         printEmployees(employees);
-
+        printNameEmployees();
     }
 
     public static void printEmployees(Employee[] employees) {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null)
-                System.out.println(employees[i]);
+        for (Employee employee : employees) {
+            if (employee != null)
+                System.out.println(employee);
         }
 
     }
@@ -70,26 +69,41 @@ public class Main {
 
     }
 
-    private static void maxWages() {
-        int max = 0;
+    private static Employee maxWages() {
+        Employee employeeWithMaxWages = employees[0];
+        int maxWages = employees[0].getWages();
 
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getWages() > max) {
-                max = employees[i].getWages();
+            if (employees[i].getWages() > maxWages) {
+                employeeWithMaxWages = employees[i];
+                maxWages = employees[i].getWages();
             }
         }
-        System.out.println("Максимальная зарплата:" + max);
+        System.out.println("Максимальная зарплата:" + maxWages);
+        return employeeWithMaxWages;
     }
 
-    private static void minWages() {
+
+    private static Employee minWages() {
+        Employee employeeWithMinWages = employees[0];
         int minWages = employees[0].getWages();
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getWages() < minWages) {
+                employeeWithMinWages = employees[i];
                 minWages = employees[i].getWages();
             }
         }
         System.out.println("Минимальная зарплата:" + minWages);
+        return employeeWithMinWages;
     }
+
+    public static void printNameEmployees() {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) ;
+            System.out.println(employees[i].getEmployeeName());
+        }
+    }
+
 
 }
 
